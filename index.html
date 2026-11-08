@@ -281,6 +281,19 @@ details.model div{margin-top:8px;font-size:14px}
 .orditem.wrong{border-color:var(--bad);background:var(--badbg)}
 .orditem button{appearance:none;border:1px solid var(--line);background:var(--sunk);border-radius:6px;width:30px;height:28px;cursor:pointer;font-weight:800;flex:none}
 input[type=range]{accent-color:var(--gold);width:100%}
+.qr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+@media (max-width:900px){.qr-grid{grid-template-columns:minmax(0,1fr)}}
+.qr{background:var(--surface);border:1px solid var(--line2);border-top:6px solid var(--c);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;min-width:0}
+.qr h3{color:var(--c);margin-bottom:8px}
+.qr dl{margin:0;display:grid;gap:0}
+.qr dt{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--c);padding-top:9px;border-top:1px solid var(--line2);margin-top:9px}
+.qr dt:first-child{border-top:0;margin-top:0;padding-top:0}
+.qr dd{margin:3px 0 0;font-size:13.5px;line-height:1.5}
+.qr-tl{display:grid;gap:2px}
+.qr-tl b{font-family:var(--mono);color:var(--c);margin-right:6px}
+.tab.quick{color:var(--goldtext);font-weight:700}
+.tab.quick::before{content:"";width:10px;height:12px;background:var(--gold);clip-path:polygon(60% 0,0 58%,45% 58%,35% 100%,100% 40%,55% 40%)}
+.tab.quick[aria-current="page"]{color:var(--goldtext);border-bottom-color:var(--gold)}
 footer.foot{border-top:1px solid var(--line);padding-block:20px 40px;color:var(--muted);font-size:12.5px;margin-top:30px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -309,6 +322,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:20px 40px;color:var(-
 <nav class="navbar" aria-label="Subjects">
   <div class="tabs wrap">
     <button class="tab" data-go="home">Start</button>
+    <button class="tab quick" data-go="quick-revise">Quick revise</button>
     <button class="tab" data-go="geography">Geography <span class="cnt">8</span></button>
     <button class="tab" data-go="history">History <span class="cnt">5</span></button>
     <button class="tab" data-go="economics">Economics <span class="cnt">9</span></button>
@@ -323,6 +337,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:20px 40px;color:var(-
     <div class="eyebrow">End-of-year exam · Geography · History · Economics</div>
     <h1>Revise it, then prove it</h1>
     <p class="lede">Every topic on the revision summary is here with short notes and a practice activity. Work through a subject, then tick it off the checklist when you can do it without your notes. Your ticks and essay plan are saved in this browser.</p>
+    <div class="row" style="margin-top:6px"><button class="btn primary" data-go="quick-revise">Short on time? Quick revise</button></div>
   </div>
   <div class="wrap stack" style="gap:28px">
     <div class="subj">
@@ -908,6 +923,69 @@ footer.foot{border-top:1px solid var(--line);padding-block:20px 40px;color:var(-
   </div>
 </div>
 
+<!-- ================= QUICK REVISE ================= -->
+<div class="view" id="v-quick-revise" hidden>
+  <div class="wrap vhead">
+    <div class="eyebrow">Short on time?</div>
+    <h1>Quick revise</h1>
+    <p class="lede">The must-knows for all three subjects on one page. Read it through in about 10 minutes, then do the quick-fire quiz. Anything you can't remember, open that subject's tab and revise properly.</p>
+  </div>
+  <div class="wrap stack" style="gap:18px;padding-bottom:10px">
+    <div class="qr-grid">
+      <article class="qr" style="--c:var(--geo)">
+        <h3>Geography</h3>
+        <dl>
+          <dt>7 concepts</dt><dd><b>Environments</b> (natural/cultural places) · <b>Perspectives</b> (how people view places) · <b>Processes</b> (actions that shape places) · <b>Patterns</b> (spatial or over time) · <b>Interaction</b> (elements affecting each other) · <b>Change</b> (any alteration) · <b>Sustainability</b> (meeting needs now without harming future generations)</dd>
+          <dt>6 patterns</dt><dd>Linear · clustered · grid · radial · peripheral · random. Name it, then give an example.</dd>
+          <dt>Lat &amp; long</dt><dd><b>Latitude first</b>, N/S of the Equator (0–90°). Longitude E/W of the Prime Meridian (0–180°). Auckland ≈ <span class="mono">37°S, 175°E</span>.</dd>
+          <dt>Maps</dt><dd>7 continents: Africa, Antarctica, Asia, Australia/Oceania, Europe, North &amp; South America. 5 oceans: Pacific, Atlantic, Indian, Southern, Arctic.</dd>
+          <dt>Hazards</dt><dd><b>Tectonic</b> (earthquake, volcano, tsunami) vs <b>climatic</b> (cyclone, flood, drought). NZ sits on the Pacific–Australian plate boundary: subduction under the North Island, the Alpine Fault in the South. Know your case study: type, name, date, place, processes, 3 facts with numbers.</dd>
+          <dt>Graphs</dt><dd>Trend → quote figures with years and units → compare (faster, overtook, gap widened) → anomalies.</dd>
+          <dt>Cartoons</dt><dd>Characters and setting → labels → symbols → exaggeration → message (what's being criticised) → irony.</dd>
+          <dt>Global pattern</dt><dd><b>Describe</b> = what and where. <b>Explain</b> = why, using “because” and “as a result”.</dd>
+        </dl>
+      </article>
+      <article class="qr" style="--c:var(--hist)">
+        <h3>History</h3>
+        <dl>
+          <dt>Sources</dt><dd><b>Primary</b> = made at the time by someone involved. <b>Secondary</b> = made later. <b>Fact</b> can be proven; <b>opinion</b> uses emotive words. <b>Bias</b> = one-sided. <b>Reliability</b> = who made it, when and why.</dd>
+          <dt>US terms</dt><dd><b>Segregation</b> (forced separation) · <b>integration</b> (bringing together) · <b>Jim Crow laws</b> (“separate but equal”) · <b>boycott</b> · <b>passive resistance</b> (non-violent law-breaking) · <b>amendment</b> (change to the Constitution)</dd>
+          <dt>Timeline</dt><dd class="qr-tl"><span><b>1865</b> 13th Amendment ends slavery</span><span><b>1954</b> Brown v. Board: school segregation unconstitutional</span><span><b>1955</b> Rosa Parks; 381-day Montgomery Bus Boycott</span><span><b>1961</b> Freedom Rides</span><span><b>1963</b> March on Washington, “I Have a Dream”</span><span><b>1964</b> Civil Rights Act</span><span><b>1965</b> Selma; Voting Rights Act</span><span><b>1968</b> MLK assassinated</span></dd>
+          <dt>NZ event</dt><dd>Know your ONE event cold: who, what, where, when, why, impact, plus names, dates and numbers.</dd>
+          <dt>Essay (25 marks)</dt><dd>300–400 words: <b>Intro → Background → The event → Impact → Conclusion</b>. Every body paragraph uses <b>PEEL</b>: Point, Evidence, Explain, Link. Explain cause and effect; use macrons.</dd>
+        </dl>
+      </article>
+      <article class="qr" style="--c:var(--econ)">
+        <h3>Economics</h3>
+        <dl>
+          <dt>Scarcity</dt><dd>Unlimited wants, limited resources, so we choose. <b>Opportunity cost</b> = the next best thing given up.</dd>
+          <dt>Factors</dt><dd><b>Land</b> → rent · <b>Labour</b> → wages · <b>Capital</b> → interest · <b>Enterprise</b> → profit</dd>
+          <dt>Sectors</dt><dd><b>Primary</b> raw materials (dairy farming) · <b>Secondary</b> manufacturing (Fonterra plant) · <b>Tertiary</b> services (tourism)</dd>
+          <dt>Demand &amp; supply</dt><dd>Price ↑ → demand ↓ (D slopes down). Price ↑ → supply ↑ (S slopes up). Increase = shift <b>right</b>, decrease = shift <b>left</b>. Graph: title, Price on y-axis, Quantity on x-axis, label D and S, mark equilibrium.</dd>
+          <dt>Trade</dt><dd><b>Balance of trade = exports − imports</b>. Positive = surplus; negative = deficit. Specialise where you have a <b>comparative advantage</b> (lower opportunity cost). <b>Adding value</b> (milk → cheese) earns more and creates jobs.</dd>
+          <dt>Exchange rates</dt><dd>NZD <b>depreciates</b> → exporters and tourism win, imports cost more. NZD <b>appreciates</b> → imports and travel cheaper, exporters struggle. To convert: foreign price <b>÷</b> rate.</dd>
+          <dt>Development</dt><dd><b>GDP per capita</b> = income only. <b>HDI</b> = health + education + income.</dd>
+          <dt>Aid</dt><dd><b>Emergency</b> (short-term) vs <b>capacity building</b> (long-term). <b>Bilateral</b> (country → country) vs <b>multilateral</b> (through the UN or World Bank). Risk: <b>aid dependency</b>. <b>FDI</b> creates lasting jobs. NZ gives most of its aid to the Pacific.</dd>
+        </dl>
+      </article>
+    </div>
+
+    <div class="cols" style="align-items:start">
+      <div class="panel" style="--subj:var(--gold)"><span class="practise-label">Quick-fire</span><h4>10 questions, all subjects</h4><p class="sub">About 3 minutes. Press “Try again” at the end for a fresh set.</p><div id="quickQuiz"></div></div>
+      <div class="panel home-tips" style="--subj:var(--gold)">
+        <span class="practise-label">Exam day</span><h4 style="margin-bottom:8px">Five rules</h4>
+        <ol class="steps">
+          <li><span><b>Marks = points.</b> 3 marks means 3 clear points.</span></li>
+          <li><span><b>Underline the command word:</b> describe (what), explain (why), compare (similar/different).</span></li>
+          <li><span><b>Use evidence:</b> names, places, dates, numbers and NZ examples.</span></li>
+          <li><span><b>Never leave a blank.</b> Save time for the 25-mark essay.</span></li>
+          <li><span><b>Check:</b> spelling, capitals, units and macrons.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ================= TEST ================= -->
 <div class="view" id="v-practice-test" hidden>
   <div class="wrap vhead">
@@ -979,7 +1057,7 @@ function wcount(t){return (t.trim().match(/\S+/g)||[]).length}
 function bindSave(ta,key){ta.value=store.get(key,'');ta.addEventListener('input',()=>store.set(key,ta.value))}
 
 /* ===================== ROUTING ===================== */
-const VIEWS=['home','geography','history','economics','practice-test'];
+const VIEWS=['home','quick-revise','geography','history','economics','practice-test'];
 function go(v,push=true){if(!VIEWS.includes(v))v='home';VIEWS.forEach(x=>$('#v-'+x).hidden=x!==v);$$('.tab').forEach(t=>t.setAttribute('aria-current',t.dataset.go===v?'page':'false'));if(push&&location.hash.slice(1)!==v){try{history.replaceState(null,'','#'+v)}catch(e){location.hash=v}}window.scrollTo(0,0);if(v==='home')updProg()}
 $$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
 window.addEventListener('hashchange',()=>go(location.hash.slice(1),false));
@@ -1500,6 +1578,8 @@ quiz($('#aidQuiz'),[
 ],{n:8,topic:'Economics'});
 bindSave($('#aidWrite'),'aid-write');
 
+/* quick-fire */
+(function(){const bank=ALLQ.filter(q=>!q.skip);quiz($('#quickQuiz'),bank,{n:10})})();
 /* ===================== MIXED TEST ===================== */
 (function(){const el=$('#mixedTest');const bank=ALLQ.filter(q=>!q.skip);const add=ALLQ.filter(q=>q.skip);quiz(el,[...bank,...shuffle(add).slice(0,3)],{n:20,onEnd:sc=>{const b=store.get('best',null);if(b==null||sc>b)store.set('best',sc);updProg()}})})();
 

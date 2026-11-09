@@ -571,6 +571,25 @@ footer.foot{border-top:1px solid var(--line);padding-block:20px 40px;color:var(-
       </div>
       <div class="panel"><span class="practise-label">Practise</span><h4>Describing or explaining?</h4><p class="sub">Sort each sentence. Exam questions often ask for one and then the other.</p><div id="globalSort"></div></div>
     </div>
+    <div class="panel stack" style="margin-top:18px" id="gpWrite">
+      <div><span class="practise-label">Write it</span><h4>Describe your global pattern and explain one key process</h4><p class="sub">Choose the pattern you studied. Your answers save in this browser.</p></div>
+      <label class="fld" for="gp-topic">My global pattern<select class="full" id="gp-topic"><option>Pacific Ring of Fire</option><option>World population density</option><option>Global development (rich and poor countries)</option><option>Tropical cyclones</option></select></label>
+      <div class="cols" style="gap:16px">
+        <div class="stack" style="gap:8px">
+          <label class="fld" for="gp-desc">1. Describe the pattern (4 marks) <small>WHAT and WHERE: name the pattern type, then give specific places, regions and numbers.</small><textarea id="gp-desc" style="min-height:150px"></textarea></label>
+          <p class="wc" id="gp-desc-wc"></p>
+          <div class="tip" id="gp-desc-hint"></div>
+          <details class="model"><summary>Show a model description</summary><div id="gp-desc-model"></div></details>
+        </div>
+        <div class="stack" style="gap:8px">
+          <label class="fld" for="gp-exp">2. Explain one key process (4 marks) <small>WHY: name the process, then explain it step by step using “because”, “this causes” and “as a result”.</small><textarea id="gp-exp" style="min-height:150px"></textarea></label>
+          <p class="wc" id="gp-exp-wc"></p>
+          <div class="tip" id="gp-exp-hint"></div>
+          <details class="model"><summary>Show a model explanation</summary><div id="gp-exp-model"></div></details>
+        </div>
+      </div>
+      <div><h4 style="margin-bottom:4px">Self-check</h4><div id="gp-check" class="stack" style="gap:3px;font-size:14px"></div></div>
+    </div>
   </section>
   </div>
 </div>
@@ -1362,6 +1381,38 @@ sorter($('#globalSort'),['Describe','Explain'],[
  {t:'Cyclones need warm oceans above about 26°C, which provide the energy for the storm.',a:1},
  {t:'Wealthier countries are mostly in the Northern Hemisphere, like the USA and Germany.',a:0},
  {t:'As a result of colonisation, many African countries lost resources and control of their economies.',a:1}]);
+
+/* global pattern writing task */
+(function(){
+ const T={
+  'Pacific Ring of Fire':{dh:'<b>Include:</b> “linear” or “horseshoe-shaped”, the Pacific Ocean edge, at least three countries (e.g. NZ, Japan, Chile), and a number (about 40,000 km long; about 75% of active volcanoes).',
+   eh:'<b>Process: subduction.</b> Steps: plates meet → heavier oceanic plate sinks under → melts into magma → magma rises → volcanoes form in a chain; plates stick and slip → earthquakes.',
+   dm:'The Ring of Fire is a <b>linear, horseshoe-shaped</b> pattern of volcanoes and earthquakes around the <b>edge of the Pacific Ocean</b>. It is about <b>40,000 km long</b> and runs from <b>New Zealand and Tonga</b>, through <b>Indonesia, the Philippines and Japan</b>, across to <b>Alaska</b>, and down the west coast of the Americas to <b>Chile</b>. About <b>75% of the world’s active volcanoes</b> are found along it, while the middle of the Pacific has very few.',
+   em:'The pattern is caused by <b>subduction</b> at plate boundaries. Around the Pacific, the heavier oceanic Pacific Plate is forced underneath lighter plates, for example under the North Island of New Zealand. <b>As the plate sinks</b> into the hot mantle it melts, <b>forming magma</b>. Because magma is less dense than the rock around it, it rises through cracks and erupts, <b>so a chain of volcanoes forms</b> along the plate boundary. The plates also stick and then slip suddenly, <b>which causes earthquakes</b>. As a result, volcanoes and earthquakes follow the line of the plate boundaries.'},
+  'World population density':{dh:'<b>Include:</b> “clustered” or “uneven”, dense areas (East Asia, South Asia, Europe, coasts, river valleys like the Ganges or Nile), sparse areas (Sahara, Antarctica, Amazon, northern Canada), and a number if you can.',
+   eh:'<b>Process: river flooding builds fertile soil</b> (or choose climate or jobs in cities). Steps: river floods → deposits silt → fertile soil → farming produces lots of food → supports many people → dense settlement.',
+   dm:'World population is <b>clustered and uneven</b>. The densest areas are <b>East Asia</b> (eastern China), <b>South Asia</b> (India and Bangladesh), <b>Europe</b> and the <b>north-east USA</b>, especially along <b>coasts</b> and <b>river valleys</b> such as the <b>Ganges</b> and the <b>Nile</b>. In contrast, very few people live in hot deserts like the <b>Sahara</b>, cold areas like <b>Antarctica</b> and northern <b>Canada</b>, and dense rainforests like the <b>Amazon</b>.',
+   em:'One key process is <b>river flooding, which creates fertile soil</b>. When rivers like the Ganges flood each year, they spread a layer of silt over the floodplain. <b>This makes the soil fertile</b>, so farmers can grow large amounts of food such as rice. <b>Because there is plenty of food and water</b>, the land can support many people, <b>so dense villages and cities grow</b>. As a result, population is clustered along river valleys, while deserts, which lack water and fertile soil, have very few people.'},
+  'Global development (rich and poor countries)':{dh:'<b>Include:</b> where high-HDI countries are (North America, Western Europe, Japan, Australia and NZ) and where low-HDI countries cluster (Sub-Saharan Africa, parts of South Asia). Mention the Brandt Line.',
+   eh:'<b>Process: colonisation</b> (or landlocked geography, or conflict). Steps: European powers took control → resources taken and exported → economies set up to export raw materials → after independence, still reliant on low-value exports and weak infrastructure → slower development.',
+   dm:'Development follows a <b>north–south pattern</b>, shown by the <b>Brandt Line</b>. Most high-HDI countries are in the Northern Hemisphere, such as the <b>USA, Canada, Western Europe and Japan</b>, with <b>Australia and New Zealand</b> as exceptions in the south. Low-HDI countries are <b>clustered in Sub-Saharan Africa</b>, such as <b>Niger and Chad</b>, and in parts of <b>South Asia</b>, such as <b>Afghanistan</b>.',
+   em:'One key process is <b>colonisation</b>. During the 1800s and 1900s, European powers took control of much of Africa and Asia. Resources such as gold, rubber and land were taken and exported to benefit the colonising countries, <b>so local economies were set up only to export raw materials</b>. When these countries gained independence, many still depended on low-value raw material exports and had little infrastructure or education. <b>As a result</b>, they earned less money and developed more slowly, which helps explain why many low-HDI countries are former colonies.'},
+  'Tropical cyclones':{dh:'<b>Include:</b> the latitudes (about 5°–30° north and south of the Equator), that they form over warm oceans, regions affected (Caribbean and south-east USA, the Philippines and Japan, northern Australia, Pacific islands such as Vanuatu and Fiji), and that they don’t form right on the Equator.',
+   eh:'<b>Process: how a cyclone forms.</b> Steps: sea above about 26°C → warm moist air rises fast → low pressure → air cools and condenses, releasing heat that powers the storm → Earth’s spin makes it rotate → weakens over land or cold water.',
+   dm:'Tropical cyclones form in a <b>band between about 5° and 30° north and south of the Equator</b>, over <b>warm tropical oceans</b>. They usually move west, then curve away from the Equator. Places often affected include the <b>Caribbean and south-east USA</b>, the <b>Philippines and Japan</b>, <b>northern Australia</b>, and Pacific islands such as <b>Vanuatu and Fiji</b>. They do <b>not form right on the Equator</b> or over cold seas.',
+   em:'Cyclones form <b>because they need warm ocean water</b> above about 26°C. Warm, moist air rises quickly from the sea, <b>creating very low pressure</b> at the surface. As the air rises it cools and condenses into huge clouds, <b>which releases heat and powers the storm</b>. The Earth’s rotation makes the rising air spin, <b>so a rotating cyclone forms</b>. This is why cyclones are not found on the Equator, where the spin effect is too weak. <b>As a result</b>, they form only over warm tropical seas, and they weaken once they move over land or cold water and lose their energy supply.'}};
+ const sel=$('#gp-topic'),d=$('#gp-desc'),x=$('#gp-exp');
+ sel.value=store.get('gp-topic',sel.value);bindSave(d,'gp-desc');bindSave(x,'gp-exp');
+ function upd(){const t=T[sel.value];$('#gp-desc-hint').innerHTML=t.dh;$('#gp-exp-hint').innerHTML=t.eh;$('#gp-desc-model').innerHTML=t.dm;$('#gp-exp-model').innerHTML=t.em;
+  const dw=wcount(d.value),xw=wcount(x.value);$('#gp-desc-wc').textContent=dw+' words · aim for 60–100';$('#gp-exp-wc').textContent=xw+' words · aim for 70–120';
+  const checks=[[/\b(linear|clustered|uneven|dispersed|band|horseshoe|north.south|peripheral|concentrated)\b/i.test(d.value),'Description names a pattern type (linear, clustered, uneven, a band…)'],
+   [(d.value.match(/\b[A-Z][a-z]{2,}/g)||[]).filter(w=>!/^(The|They|There|This|These|It|In|Most|Many|About|And|But|While|Very|Some|Places|Low|High|World|Population|Cyclones|Tropical|Development)$/.test(w)).length>=3,'Description gives at least three specific places'],
+   [/\d/.test(d.value),'Description includes a number (km, %, degrees, people…)'],
+   [/\b(because|this causes|causes|so|as a result|therefore|which (means|leads|causes|releases|makes)|leads to)\b/i.test(x.value),'Explanation uses cause-and-effect words'],
+   [wcount(x.value)>=50,'Explanation has several linked steps (50+ words)']];
+  const c=$('#gp-check');c.innerHTML='';checks.forEach(([ok,t])=>c.append(h('div',{style:`color:${ok?'var(--good)':'var(--muted)'}`},(ok?'✓ ':'○ ')+t)))}
+ sel.onchange=()=>{store.set('gp-topic',sel.value);upd()};d.addEventListener('input',upd);x.addEventListener('input',upd);upd();
+})();
 
 /* ===================== HISTORY ===================== */
 sorter($('#factSort'),['Fact','Opinion'],[
